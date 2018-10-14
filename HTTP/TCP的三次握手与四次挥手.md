@@ -20,9 +20,11 @@
   服务端(Server)收到ACK后，“就知道可以断开连接了”。客户端(Client)等待了2MSL后依然没有收到回复，则证明服务端(Server)已正常关闭，然后客户端(Client)也关闭连接。 TCP连接就这样关闭了!
 
   整个过程Client端所经历的状态如下：
+  
 ![Alt text](http://img.my.csdn.net/uploads/201108/7/0_1312719804oSkK.gif )
 
   整个过程Server端所经历的过程如下：
+  
 ![Alt text](http://img.my.csdn.net/uploads/201108/7/0_1312719833030b.gif )
 
   **注意：在TIME_WAIT状态中，如果TCP Client端最后一次发送ACK丢失了，它将重新发送。TIME_WAIT状态中所需要的时间是依赖于实现方法的。典型的值为30s、1分钟和两分钟。等待连接正式关闭，并且所有的资源（包括端口号）都被释放**
