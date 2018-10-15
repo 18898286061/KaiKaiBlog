@@ -6,7 +6,7 @@
   
   &lt;header&gt;&lt;/header&gt;  ：定义了文档的头部区域
   
-  <footer></footer>  ：定义了文档的尾部区域
+  &lt;footer&gt;&lt;/footer&gt;  ：定义了文档的尾部区域
   
   <nav></nav>        ：定义文档的导航
   
