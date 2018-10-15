@@ -143,10 +143,57 @@
   t1的skills添加了一项c++的数据，**其他的实例都能访问到**，因为其他实例中共享了skills数据，skills是一个引用类型
   
   
+  **七、借用构造函数**
+  为了消除引用类型影响不同的实例，可以借用构造函数，把引用类型的数据复制到每个对象上，就不会相互影响了;
+  
+  function Person(uName) {
+    this.skills = ['php', 'javascript'];
+    this.userName = uName;
+  }
+  
+  Person.prototype.getUserName = function(){
+    return this.userName;
+  }
+  function Teacher(uName) {
+    Person.call(this, uName);
+  } 
+  var t1 = new Teacher();
+  t1.skills.push('c++');
+  var t2 = new Teacher();
+  console.log(t2.skills); // php, javascript
+  console.log(t2.getUserName()); // Uncaught TypeError: oT2.showUserName is not a function
+  
+  虽然t1添加了一项"c++",但是不会影响t2.skills的数据，通过子类构造函数中call的方式，去借用父类的构造函数，把父类的属性复制过来，而且还能**传递参数**，如第8行 function Teacher(uName) , 但是第15行，方法调用错误，因为构造函数中只复制了属性，不会复制到父类原型对象上的方法。
+  
+  **组合继承（原型对象 + 借用构造函数）**
+  
+  **单一的原型继承缺点有：**
+  
+  1、不能传递参数，如：
+  
+  Teacher.prototype = new Person();
+  
+  有些人说，小括号后面可以跟参数啊，没错，但是只要跟了参数，子类所有的实例属性，都是跟这个一样，说白了，还是传递不了参数；
+  
+  2、把引用类型放在原型对象上，会在不同实例上产生相互影响
  
- 
- 
- 
+
+  **单一的借用构造函数缺点有：**
+  
+  1、不能复制到父类的方法
+  
+  刚好原型对象方式的缺点，借用构造函数可以弥补，借用构造函数的缺点，原型对象可以弥补，于是，就产生了一种组合继承方法：
+  
+  
+ ```
+  function Person() {
+    this skills = ['php', 'javascript'];
+    this.userName = uName;
+  }
+  Person.prototype.getUserName = function() {
+    
+  }
+ ```
  
  
  
