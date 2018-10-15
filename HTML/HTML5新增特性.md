@@ -8,7 +8,7 @@
   
   &lt;footer&gt;&lt;/footer&gt;      ： 定义了文档的尾部区域
   
-  &lt;<nav></nav>	                   ： 定义文档的导航
+  &lt;nav&gt;&lt;/nav&gt;	           ： 定义文档的导航
    
   &lt;section&gt;&lt;/section&gt;	   ： 定义文档中的节（section、区段）
  
