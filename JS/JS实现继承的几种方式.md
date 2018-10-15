@@ -70,12 +70,79 @@
     Teacher.prototype = new Person();
     
     var t1 = new Teacher();
-    console.log
+    
+    console.log(t1 instance Teacher); //true
+    console.log(t1 instance Person); //true
+    console.log(t1 instanceof Object); //true
+    console.log(Teacher.prototype.isPrototypeOf(t1)); //true
+    console.log(Person.prototype.isPrototypeOf(t1)); //true
+    console.log(Object.prototype.isPrototypeOf(t1)); //true
   ```
   
+  **四、父类存在的方法和属性，子类可以覆盖（重写），子类没有的方法和属性，可以扩展**
+  ```
+  function Person() {}
+    Person.prototype.getUserName= function() {
+      console.log('Person :: getUsername');
+    }
+    
+  function Teacher() {}
+  Teacher.prototype = new Person();
+  Teacher.prototype.showUserName = function() {
+    console.log('Teacher :: showUsername');
+  }
+  Teacher.prototype.showAge = function(){
+    console.log(21);
+  }
+  var t1 = new Teacher();
+  t1.showUserName(); // Teacher :: showUsername
+  t2.showAge(); // 21
+  
+  ```
+  
+  **五、重写原型对象之后，其实就是把原型对象的_proto__指向发生了改变**
+  
+  原型对象的prototype的__proto__的指向发生了改变, 会把原本的继承关系覆盖(切断);
+  
+  ```
+  function Person() {}
+  Person.prototype.showUserName = function() {
+    console.log('Person :: showUserName');
+  }
+  function Teacher() {}
+  Teacher.prototype = new Person();
+  Teacher.prototype = {
+    showAge : function() {
+      console.log(21);
+    }
+  }
+  
+  var t1 = new Teacher();
+  t1.showAge(); //22
+  t1.showUserName()// Uncaught TypeError: t1.showUserName is not a function
+  ```
+  
+  上例，第7行，Teacher.prototype重写了Teacher的原型对象（prototype），原来第6行的原型对象的隐式原型(__proto__)指向就没有作用了.
+
+  所以在第14行，oT.showUserName() 就会发生调用错误，因为Teacher的原型对象(prototype)的隐式原型(__proto__)不再指向父类(Person)的实例，继承关系被破坏了;
+  
+  **六、在继承过程中，小心处理实例的属性上引用类型的数据**
+  
+  ```
+  function Person() {
+    this.skills = ['php', 'javascript'];
+  }
+  function Teacher (){}
+  Teacher.prototype = new Person();
+  
+  var t1 = new Teacher();
+  var t2 = new Teacher();
+  t1.skills.push('c++');
+  console.log(t1.skills); // php, javascript, c++
+  ```
+  t1的skills添加了一项c++的数据，**其他的实例都能访问到**，因为其他实例中共享了skills数据，skills是一个引用类型
   
   
- 
  
  
  
