@@ -208,4 +208,4 @@
   console.log(t2.getUserName()); // KaiKai
  ```
  
- 子类实例oT2的skills不会受到oT1的影响，子类的实例也能调用到父类的方法.
+ 子类实例t2的skills不会受到t1的影响，子类的实例也能调用到父类的方法.
