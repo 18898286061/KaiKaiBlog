@@ -13,7 +13,7 @@
   
   说明:其他语言中继承通常通过类来实现，js中没有类的概念，js中的继承是某个对象继承另外一个对象，是基于对象的。
   
-  **一、把父类的实例对象给子类的原型对象**
+  **一、把父类的实例对象赋给子类的原型对象**
   ```
   function Person() {
     this.userName = 'KaiKai';
@@ -36,4 +36,62 @@
   
   ![Alt text](https://images2017.cnblogs.com/blog/253192/201708/253192-20170827112655168-1905643207.png)
   
+ 
+  **二、把父类的原型对象(prototype)赋给子类的原型对象（prototype）,可以继承到父类的方法，但是继承不到父类的属性**
+  ```
+  function Person() {
+    this.userName = 'KaiKai';
+  }
+  Person.prototype.getUserName = function() {
+    return 'this.userName';
+  }
+  function Teacher() {}
+  Teacher.prototype = Person.prototype;
+  
+  var t1 = new Teacher();
+  console.log(t1.showUserName() ); // KaiKai
+  console.log(t1.userName) //undefined, 没有继承到父类的userName
+  ```
+  
+  因为Teacher.prototype的隐式原型(__proto__)只指向Person.prototype，所以获取不到Person实例的属性
+  
+  **三、发生继承关系后，实例与构造函数（类）的关系判断**
+  
+  还是通过instanceof和isPrototypeOf判断
+  
+  ```
+    function Person() {
+      this.userName = 'KaiKai';
+    }
+    Person.prototype.getUserName = function() {
+      return this.userName;
+    }
+    function Teacher () {}
+    Teacher.prototype = new Person();
+    
+    var t1 = new Teacher();
+    console.log
+  ```
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
