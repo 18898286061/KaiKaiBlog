@@ -2,7 +2,7 @@
 
 **（1）语义标签**
 
-  | 语义化标签使得页面的内容结构化，见名知义：
+  语义化标签使得页面的内容结构化，见名知义：
   
   | 标签 | 描述 |
   | -------- | -------- |
@@ -15,11 +15,6 @@
   | &lt;detailes&gt;&lt;/detailes&gt; | 用于描述文档或文档某个部分的细节 |
   | &lt;summary&gt;&lt;/summary&gt; | 标签包含 details 元素的标题 |
   | &lt;dialog&gt;&lt;/dialog&gt; |	定义对话框，比如提示框 |
-  
-  | 标签 | 描述 |
-  | ------ | ------ |
-  | &lt;header&gt;&lt;/header&gt; | 定义了文档的头部区域 |
-  | &lt;footer&gt;&lt;/footer&gt; | 定义了文档的尾部区域 |
   
   
   
