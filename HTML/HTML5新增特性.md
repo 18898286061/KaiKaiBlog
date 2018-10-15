@@ -3,8 +3,8 @@
 **（1）语义标签**
 
   语义化标签使得页面的内容结构化，见名知义
-
-  <header></header>  ：定义了文档的头部区域
+  
+  &lt header &gt &lt /header &gt  ：定义了文档的头部区域
   
   <footer></footer>  ：定义了文档的尾部区域
   
