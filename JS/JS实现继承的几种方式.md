@@ -146,6 +146,7 @@
   **七、借用构造函数**
   为了消除引用类型影响不同的实例，可以借用构造函数，把引用类型的数据复制到每个对象上，就不会相互影响了;
   
+  ```
   function Person(uName) {
     this.skills = ['php', 'javascript'];
     this.userName = uName;
@@ -162,6 +163,7 @@
   var t2 = new Teacher();
   console.log(t2.skills); // php, javascript
   console.log(t2.getUserName()); // Uncaught TypeError: oT2.showUserName is not a function
+  ```
   
   虽然t1添加了一项"c++",但是不会影响t2.skills的数据，通过子类构造函数中call的方式，去借用父类的构造函数，把父类的属性复制过来，而且还能**传递参数**，如第8行 function Teacher(uName) , 但是第15行，方法调用错误，因为构造函数中只复制了属性，不会复制到父类原型对象上的方法。
   
@@ -186,26 +188,24 @@
   
   
  ```
-  function Person() {
+  function Person(uName) {
     this skills = ['php', 'javascript'];
     this.userName = uName;
   }
   Person.prototype.getUserName = function() {
-    
+    return this.userName;
   }
+  function Teacher(uName){
+    Person.call(this, uName);
+  }
+  
+  Teacher.prototype = new Person();
+  
+  var t1 = new Teacher('KaiKai');
+  t1.skills.push('C++');
+  var t2 = new Teacher('KaiKai');
+  console.log(t2.skills); //php, javascript
+  console.log(t2.getUserName()); // KaiKai
  ```
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+ 子类实例oT2的skills不会受到oT1的影响，子类的实例也能调用到父类的方法.
