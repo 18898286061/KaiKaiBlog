@@ -139,7 +139,7 @@
 
 ## 简述：Cookie 是什么？Session 是什么？
 
-Cookie
+**Cookie**
 - HTTP响应通过 Set-Cookie 设置 Cookie
 - 浏览器访问指定域名是必须带上 Cookie 作为 Request Header
 - Cookie 一般用来记录用户信息
