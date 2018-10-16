@@ -137,7 +137,7 @@
 
 ---
 
-**简述：Cookie 是什么？Session 是什么？**
+ ## 简述：Cookie 是什么？Session 是什么？**
 
 Cookie
 - HTTP响应通过 Set-Cookie 设置 Cookie
