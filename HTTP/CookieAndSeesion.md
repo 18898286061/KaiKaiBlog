@@ -1,3 +1,5 @@
+
+
 本文内容大多参考《图解HTTP》一书
 
 文章多转载至 [认识HTTP----Cookie和Session篇 作者：胡秉亮]https://zhuanlan.zhihu.com/p/27669892
@@ -135,7 +137,16 @@
 
 ---
 
+**简述：Cookie 是什么？Session 是什么？**
 
+Cookie
+- HTTP响应通过 Set-Cookie 设置 Cookie
+- 浏览器访问指定域名是必须带上 Cookie 作为 Request Header
+- Cookie 一般用来记录用户信息
+**Session**
+- Session 是服务器端的内存（数据）
+- Session 一般通过在 Cookie 里记录 SessionID 实现
+- SessionID 一般是随机数
 
 
   ## 简述 cookie 和session 的区别：
