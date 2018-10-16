@@ -143,6 +143,7 @@
 - HTTP响应通过 Set-Cookie 设置 Cookie
 - 浏览器访问指定域名是必须带上 Cookie 作为 Request Header
 - Cookie 一般用来记录用户信息
+
 **Session**
 - Session 是服务器端的内存（数据）
 - Session 一般通过在 Cookie 里记录 SessionID 实现
