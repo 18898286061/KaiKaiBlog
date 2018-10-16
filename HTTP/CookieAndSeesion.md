@@ -137,7 +137,7 @@
 
 ---
 
- ## 简述：Cookie 是什么？Session 是什么？**
+## 简述：Cookie 是什么？Session 是什么？
 
 Cookie
 - HTTP响应通过 Set-Cookie 设置 Cookie
@@ -149,7 +149,7 @@ Cookie
 - SessionID 一般是随机数
 
 
-  ## 简述 cookie 和session 的区别：
+## 简述 cookie 和session 的区别：
 
 1.cookie数据存放在客户的浏览器上，session数据放在服务器上。
 
