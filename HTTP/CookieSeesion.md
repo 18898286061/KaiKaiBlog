@@ -1,6 +1,6 @@
 本文内容大多参考《图解HTTP》一书
 
-文章多转载至 [认识HTTP----Cookie和Session篇 作者：胡秉亮]https://zhuanlan.zhihu.com/p/27669892)
+文章多转载至 [认识HTTP----Cookie和Session篇 作者：胡秉亮]https://zhuanlan.zhihu.com/p/27669892
 
 cookie 和session 的区别：
 
