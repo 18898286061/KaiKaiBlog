@@ -54,24 +54,48 @@
   ```
   
   #### 2、shouldComponentUpdate()
+  
+  当组件接收到新属性，或者组件的状态发生改变时触发。组件首次渲染时并不会触发
+  
+  
   ```
     当组件接收到新属性，或者组件的状态发生改变时触发。组件首次渲染时并不会触发
+    shouldComponentUpdate(newProps, newState) {
+    if (newProps.number < 5) return true;
+    return false
+}
+//该钩子函数可以接收到两个参数，新的属性和状态，返回true/false来控制组件是否需要更新。
+
   ```
   
-  #### 3、componentWillMount()
+  一般我们通过该函数来优化性能：
+
+  一个React项目需要更新一个小组件时，很可能需要父组件更新自己的状态。而一个父组件的重新更新会造成它旗下所有的子组件重新执行render()方法，形成新的虚拟DOM，再用diff算法对新旧虚拟DOM进行结构和属性的比较，决定组件是否需要重新渲染
+
+  无疑这样的操作会造成很多的性能浪费，所以我们开发者可以根据项目的业务逻辑，在shouldComponentUpdate()中加入条件判断，从而优化性能
+
+  例如React中的就提供了一个PureComponent的类，当我们的组件继承于它时，组件更新时就会默认先比较新旧属性和状态，从而决定组件是否更新。值得注意的是，PureComponent进行的是浅比较，所以组件状态或属性改变时，都需要返回一个新的对象或数组
+
+  
+  #### 3、componentWillUpdate()
   ```
+    组件即将被更新时触发
+  ```
+  
+  #### 4、componentDidUpdate()
+  ```
+    组件被更新完成后触发。页面中产生了新的DOM的元素，可以进行DOM操作
+  ```
+  
+  ## 三、销毁阶段
+  
+  
+  1、componentWillUnmount()
+
     
-  ```
-  
-  #### 
-  ```
-    组件渲染
-  ```
-  
-  #### 5、componentDidMount()
-    ```
+  组件被销毁时触发。这里我们可以进行一些清理操作，例如清理定时器，取消Redux的订阅事件等等。
     
-    ```
+
  
 
   
