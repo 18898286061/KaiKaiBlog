@@ -20,3 +20,62 @@
       </div>
     </div>
   ```
+  CSS
+  ```
+  #wrap {
+    width: 200px;
+    height: 200px;
+    background: orange;
+  }
+  
+  #outer {
+    position: relative;
+    top: 50px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    background: #eeddff;
+}
+  #inner {
+    position: relative;
+    top: 25px;
+    left:25px;
+    width: 50px;
+    height: 50px;
+    background: #44ddff;
+  }
+  ```
+  
+  js
+ 
+  ```
+  var wrap = document.getElementById('wrap');
+  wrap.addEventListener('click',function(){
+    alert('789');
+  },false);
+  ```
+  
+  **output**
+  ![img](https://image-static.segmentfault.com/152/073/1520733268-55dd228c67579_articlex)
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
