@@ -56,7 +56,7 @@
   ```
   
   **output**
-  ![img](https://image-static.segmentfault.com/152/073/1520733268-55dd228c67579_articlex)
+    <div align=center>![img](https://image-static.segmentfault.com/152/073/1520733268-55dd228c67579_articlex)
   
   
   
