@@ -56,7 +56,7 @@
   ```
   
   **output**
-    <div align=center>![img](https://image-static.segmentfault.com/152/073/1520733268-55dd228c67579_articlex)</div>
+    [img](https://image-static.segmentfault.com/152/073/1520733268-55dd228c67579_articlex)
   
   问题1: 容器元素wrap注册了事件，那么此事件的**作用范围**是什么？
   
@@ -92,7 +92,8 @@
   ```
   
   **output**
-  ![](http://image-static.segmentfault.com/210/695/2106953494-55dd4a220943b)
+  
+    ![](http://image-static.segmentfault.com/210/695/2106953494-55dd4a220943b)
   
   
   
