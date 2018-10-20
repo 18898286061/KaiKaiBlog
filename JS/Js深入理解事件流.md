@@ -94,6 +94,8 @@
   **output**
   <div align=center>![img2](https://image-static.segmentfault.com/210/695/2106953494-55dd4a220943b_articlex)</div>
   
+  <div align=center>![img2](https://image-static.segmentfault.com/210/695/2106953494-55dd4a220943b)</div>
+  
   
   
   
