@@ -92,7 +92,7 @@
   ```
   
   **output**
-  <div align=center>![](http://image-static.segmentfault.com/210/695/2106953494-55dd4a220943b)</div>
+  ![](http://image-static.segmentfault.com/210/695/2106953494-55dd4a220943b)
   
   
   
