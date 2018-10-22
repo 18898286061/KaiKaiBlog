@@ -43,9 +43,18 @@ head标签中加入：
   initial-scale | 设置页面的初始缩放值，为一个数字，可以带小数
   minimum-scale | 允许用户的最小缩放值，为一个数字，可以带小数
   maximum-scale | 允许用户的最大缩放值，为一个数字，可以带小数
-  height | 设置layout viewport 的高度，这个属性并不重要，很少使用
+  height | 设置layout viewport 的高度，这个属性并不重要，很少使用
   user-scalable | 是否允许用户进行缩放，值为"no"或"yes", no 代表不允许，yes代表允许
   
+  width能控制layout viewport的宽度，如果不指定该属性，layout viewport将默认为980px或1024px（也可能是其它值，由设备本身决定），如果把layout viewport的宽度设置为移动设备的宽度，那么layout viewport将成为ideal viewport。
+
+  其实，要把当前的viewport宽度设为ideal viewport的宽度，既可以设置width=device-width，也可以设置initial-scale=1，但有一个小缺陷，就是width=device-width会导致iphone、ipad横竖屏不分，initial-scale=1会导致IE横竖屏不分，都以竖屏的ideal viewport宽度为准。所以，最完美的写法两者都写上去， initial-scale=1 解决 iphone、ipad的缺陷，width=device-width解决IE的缺陷。
+
+  viewport设置移动端自适应的方法：
+
+  ```
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  ```
   
   
   
