@@ -1,0 +1,14 @@
+计数排序的逻辑（只能正整数）
+ var a = [4,2,5,6,3,4,5]
+ var hashTab = {}
+ for(let i=0; i<a.length;i++){
+     if(a[i] in hashTab){
+         // 什么也不做
+     }else{
+         hashTab[ a[i] ] = true
+     }
+ }
+ //hashTab: {4: true, 2: true, 5: true, 6:true, 3: true}
+ console.log(Object.keys(hashTab)) // ['4','2','5','6','3']
+Set 去重
+ Array.from(new Set(a))
