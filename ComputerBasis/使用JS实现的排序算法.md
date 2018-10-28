@@ -165,7 +165,7 @@ var mid = Math.floor(a.length / 2),
 
 ## 快速排序
 
-![Alt text](https://user-gold-cdn.xitu.io/2017/7/27/ad4d6e25b6e0e91c743ae220e3d52d1e)
+![Quick](https://user-gold-cdn.xitu.io/2017/7/27/ad4d6e25b6e0e91c743ae220e3d52d1e)
 
 ```
 5 6 3 1 8 7 2 4
@@ -252,7 +252,7 @@ function quickSort(arr){
 ```
 
 
-![Alt text](https://user-gold-cdn.xitu.io/2017/7/27/3bcdc49661b5c8a3500463095ecc09df)
+![Bubble](https://user-gold-cdn.xitu.io/2017/7/27/3bcdc49661b5c8a3500463095ecc09df)
 
 算法描述： 
 1. 比较相邻的元素。如果第一个比第二个大，就交换他们两个。 
