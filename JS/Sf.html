@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+<script type="text/javascript">
+	// 1. 生成十个随机数( 10 ~ 100 )并对数组进行排序 
+
+
+	// function sortNumber(a,b) {
+	// 	return a - b;
+	// }
+
+	// function fn(){
+	// 	var myarr = [];
+	// 	for(var i = 0; i < 10; i++){
+	// 		var b = Math.floor(Math.random() * 90 + 10);
+	// 		myarr.push(b)
+	// 	}
+	// 	myarr.sort(sortNumber);
+	// 	console.log(myarr);
+	// }
+	// console.log(fn());
+
+
+	// 2. 给Array对象中添加一个数组去重的方法;
+	// arr = [1,2,2,3,4,5,5,5,6,7,8,8,9];
+
+	// Array.prototype.unique = function() {
+	// 	var that = this;
+	// 	var res = [];
+	// 	var hashtab = {};
+	// 	for(var i = 0; i < that.length; i++) {
+	// 		if(!hashtab[that[i]]) {
+	// 			res.push(that[i]);
+	// 			hashtab[that[i]] = true;
+	// 		}
+	// 	}
+	// 	return res;
+	// }
+	// console.log(arr.unique());
+
+
+	// 将字符串转换为数字并使用 + 运算符;
+	// var a = "3.14";
+	// console.log(Number(a) + 1);
+	// console.log(parseFloat(a) + 1);
+	// console.log(a - 0 + 1);
+
+
+	// 验证一个数是否是质数;
+	var isPrime = function(n) {
+		var divider = 2;
+		var limit = Math.sqrt(n);
+		while(divider <= limit) {
+			if(n % divider == 0) {
+				return false;
+			}
+			divider++;
+		}
+		return true;
+	}
+
+	console.log(isPrime(10));
+	console.log(isPrime(11));
+
+
+
+</script>
+</body>
+</html>
+
+
+
+ 
