@@ -116,7 +116,83 @@ A 的意思就是添加，也就是说你告诉了 git   ：“这些文件我�
 刷新当前页面，你的仓库就上传到 GitHub 了！
 
 
+## 直接在Github创建一个仓库，然后下载到本地
+
+这里我们将讲解第三种用法，那就是直接在Github创建仓库，然后下载到本地
+
+1. 在Github 上新建一个仓库 domo2，这次不创建空仓库了，而是自带 README 和 Lisence 的仓库，创建的选项如下：
+  - Repository name：   （填写你自己的库名）
+  - Description(optional)： （形容一下你这个库）
+  - Public （库的私密性）
+  - Iniyialize this repository with a README （使用一个README初始化这个库）
+  - Add .gitignore: Node （忽略的上传文件）
+  - Add a license: MIT License （许可证）
+  - 最后点击绿色按钮的创建（Create respository）
+2. 这样一来，这个仓库就会自动拥有三个文件：.gitignore、LICENSE、README.md
+3. 这三个文件的作用链接：
+  - README 自行搜索啦~
+  - 在项目目录创建 .gitignore 文件就可以指定「哪些文件不上传到远程仓库」，比如
+  .gitignroe
+  ```
+  /node_modules/
+  /.vscode/
+  //（这句是注释别写上去）这样就可以避免 node_modules/ 和 .vscode/ 目录被上传到 github 了。
+  ```
+  - [.gitignore的作用](http://gitbook.liuhui998.com/4_1.html)
+  - [LISENCE的作用](http://www.ruanyifeng.com/blog/2011/05/how_to_choose_free_software_licenses.html)
+
+4. 好了，现在远程仓库已经创建好了，接下来使用 git clone 命令把我们库里的东西下载下来
+5. 点击页面中唯一的绿色按钮「clone or download」，会看到一个弹出层
+6. 请确保弹出层里的地址是 SSH 地址，也就是 git@github.com 开头的地址，如果不是，就点击 Use SSH 按钮。然后复制这个地址。
+7. 打开 Git Bash，找一个安全的目录：`cd ~/Desktop`运行。
+8. 运行 `git clone 你刚才得到的以git@github.com开头的地址`，运行完了你就会发现，桌面上多出一个 demo2 目录。
+9. `cd demo2`进入这个多出来的目录
+10. 运行 `ls -la` 你会看到，远程目录的所有文件都在这里出现了，另外你还看到了 .git 本地仓库。这是你就可以添加文件，git add，然后 git commit 了。
+
+### 回顾一下
+我们再回顾一遍已经学到的命令：（这次只多了一个 git clone 命令）
+
+1. git clone git@github.com:xxxx，下载仓库
+2. git init，初始化本地仓库 .git
+3. git status -sb，显示当前所有文件的状态
+4. git add 文件路径，用来将变动加到暂存区
+5. git commit -m "信息"，用来正式提交变动，提交至 .git 仓库
+6. 如果有新的变动，我们只需要依次执行 git add xxx 和 git commit -m 'xxx' 两个命令即可。
+
+## 如何上传更新
+你在本地目录有任何变动，只需按照以下顺序就能上传：
+
+1.git add 文件路径
+2. git commit -m "信息"
+3. git pull 
+4. git push
+
+下面是例子
+
+1. `cd git-demo-1`
+2. `touch index2.html`
+3. `git add index2.html`
+4. `git commit -m "新建 index2.html"`
+5. `git pull`
+6. `git push`
+
+## 永远都不要上传 node_modules 到 github。
+如果你想防止自己手贱上传 node_modules 到 github ，可以：
+
+1. 在项目根目录 `touch .gitignore`
+2. 在 .gitignore 里添加一行 `/node_modules/`
+3. `git add .gitignore`
+4. `git commit -m 'ignore'`
 
 
+- `git remote add origin git@github.com:xxxxxxx.git` 将本地仓库与远程仓库关联
+- `git remote set-url origin git@github.com:xxxxx.git` 上一步手抖了，可以用这个命令来挽回
+- `git branch` 新建分支
+- `git merge` 合并分支
+- `git stash` 通灵术
+- `git stash pop` 反转通灵术
+- `git revert` 后悔了
+- `git reset` 另一种后悔了
+- `git diff` 查看详细变化
 
-
+学 Git 不是一两天就能学会的，还需要长期的使用，所以别妄想现在就掌握它.。
