@@ -230,6 +230,8 @@ curl -X POST -d "1234567890" -s -v -H "KaiKai: ya" -- "https://www.baidu.com"
 
 # HTML
 
+英文全称：HyperText Markup Language ； 翻译： 超文本标记语言
+
 当响应的第二部分有 Content-Type: text/html 而且响应的第四部分是 HTML 文本时，你就可以在浏览器看到网页了。
 
 最初李爵士首次公布的关于 HTML 的想法：
