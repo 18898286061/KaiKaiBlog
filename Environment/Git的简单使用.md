@@ -184,7 +184,7 @@ A 的意思就是添加，也就是说你告诉了 git   ：“这些文件我�
 3. `git add .gitignore`
 4. `git commit -m 'ignore'`
 
-
+## 还有一些有用的命令
 - `git remote add origin git@github.com:xxxxxxx.git` 将本地仓库与远程仓库关联
 - `git remote set-url origin git@github.com:xxxxx.git` 上一步手抖了，可以用这个命令来挽回
 - `git branch` 新建分支
