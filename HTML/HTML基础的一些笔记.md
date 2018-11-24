@@ -38,7 +38,7 @@
 ```
 <dl>
   <dt>Firefox</dt>
-&lt; <dd>A free, open source, cross-platform, graphical web browser
+  <dd>A free, open source, cross-platform, graphical web browser
       developed by the Mozilla Corporation and hundreds of volunteers.</dd>
 </dl>
 ```
