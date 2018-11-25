@@ -33,15 +33,8 @@
     - （这也就是语义化）
 3. 除了 div 和 span（他们俩没有任何语义，所以我们一般加上class），其他标签都有默认样式，div和span都代表了划分一块区域。div块级区域，span行区域。
 
-因为经常记不住&lt;dl>、&lt;dt>、&lt;dd>，而且个人有觉得很有语义， 这三标签通常被称为定义性列表： 一个术语对应一条解释或定义
 
-```
-<dl>
-  <dt>Firefox</dt>
-  <dd>A free, open source, cross-platform, graphical web browser
-      developed by the Mozilla Corporation and hundreds of volunteers.</dd>
-</dl>
-```
+
 
 4. 上面就举例几个，更多可以MDN 上可以去查看所有标签的&lt;档
 
@@ -133,6 +126,89 @@ MDN说得很头疼，其实总结一下可以说是：
 ```
   如果你想看看你写的网页合不合法，可以到W3C验证器上去验证：https://validator.w3.org/unicorn/?ucn_lang=zh-Hans
   
+  
+  
+  
+  
+  
+# 学习笔记
+  
+## &lt;dl>、&lt;dt>、&lt;dd>
+
+因为经常记不住&lt;dl>、&lt;dt>、&lt;dd>，而且个人有觉得很有语义， 这三标签通常被称为定义性列表： 一个术语对应一条解释或定义
+```
+<dl>
+  <dt>Firefox</dt>
+  <dd>A free, open source, cross-platform, graphical web browser
+      developed by the Mozilla Corporation and hundreds of volunteers.</dd>
+</dl>
+```
+## a标签的target
+
+
+值	| 描述
+---| ---
+_blank	| 在新窗口中打开被链接文档。
+_self |	默认。在相同的框架中打开被链接文档。
+_parent	| 在父框架集中打开被链接文档。
+_top	| 在整个窗口中打开被链接文档。
+framename	| 在指定的框架中打开被链接文档。
+
+
+## a标签和form标签
+  
+1. a 标签发起GET请求
+2. form 标签发起POST请求， 如果 input 不加 name，那么在表单提交时，input 的值就不会出现在请求里。（也就是说记得给input 加上name属性。 让服务器知道你发的POST的值，例如：&lt;input type:checkbox name="fruit" value="orange">）
+3. get 请求 ，它的请求的参数放在url上
+4. post 请求，它的参数会放在第四部分
+
+
+## form注意事项
+如果一个form 有一个button 会自动升级为submit，但是指定了type=button，那它就是普通的按钮而已了。
+  
+
+## label标签
+label标签的for属性指定关联和input的id属性；（不过label包住for可以取到同样的效果，如果你写了这种包住的方法，就别写for id了）
+
+
+
+
+## 单选框（radio）
+单选框有同一个name时，只能选一个啦 ~
+
+
+## 下拉列表（select）
+selected是默认选择的属性，若是写上multiple，则能够多选，写上disabled属性的选项将会变为不可选
+
+
+## 多行文本  （textarea）  
+cols="30" ：定义多行文本的列数  rows="10"  ：定义多行文本的行数  （不过建议它的宽高最好去用CSS制定。因为行列不太准）； 
+
+resize=:none ：可以让多行文本不可以拖动调整大小；
+
+## 表格（table）
+
+1. table标签的表格，默认会有边框，而且边框有间距。使用`table border: collapse`；  可以让collapse合并边框  border没有空隙；
+
+2. table的子元素：
+  - thead
+    - th
+    - tr
+  - tbody
+    - tr
+    - td
+  - tfoot
+    -tr
+    -td
+
+3. colgroup 属性
+元素定义表格中的一组列表，以便于进行格式化
+
+本来用于写表格的对齐方式和宽度，不过我查了MDN，以后就用CSS写吧。最新标准已经不支持了。
+`col width=100`
+`col width=200`
+
+
 
 
 
