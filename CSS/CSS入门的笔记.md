@@ -35,8 +35,8 @@
 
 2. 我需要一个 div 高度为 30px，div 里有一行字垂直居中，字的大小为 14px，应该怎么写 CSS?
   - 给 div 的样式为 font-size: 14px; 子元素包起文字：line-height: 20px; padding: 5px 0;
- `- 给 div 的样式为 font-size: 14px; 子元素包起文字：line-height: 24px; padding: 3px 0;
- `- 给 div 的样式为 font-size: 14px; 子元素包起文字：line-height: 30px
+  - 给 div 的样式为 font-size: 14px; 子元素包起文字：line-height: 24px; padding: 3px 0;
+  - 给 div 的样式为 font-size: 14px; 子元素包起文字：line-height: 30px
   - 总结：子元素的行高 + 子元素上下内边距 = 外层盒子高度 （实现文字垂直居中）
 
 3. 如果你有一个div 有宽度，可以给它 margin-left right: auto，就可以实现水平居中
