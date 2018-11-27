@@ -58,11 +58,28 @@ clearfix:after {
   
   
 ## position
-  
-1. 给元素定义： position:fixed 会脱离文档流，也就是说，body的高度会减去这个fixed的高度，因它已经不是body内的文档流； 此元素会相对于屏幕固定；
-  - 也不会独占一行了，会缩起来
 
+1. 定位元素（positioned element）是其计算后位置属性为 relative, absolute, fixed 或 sticky 的一个元素。
+	- 相对定位元素（relatively positioned element）是计算后位置属性为 relative 的元素。
+	- 绝对定位元素（absolutely positioned element）是计算后位置属性为 absolute 或 fixed 的元素。
+	- 粘性定位元素（stickily positioned element）是计算后位置属性为 sticky 的元素。
   
+2. `fixed` 会脱离文档流，也就是说，body的高度会减去这个fixed的高度，因它已经不是body内的文档流； 此元素会相对于屏幕固定；
+  - 也不会独占一行了，会缩起来，若是我们在做topNavbar就会给width宽度100% 
+
+3.`absolute`
+	- 不为元素预留空间，通过指定元素相对于最近的非 static 定位祖先元素的偏移，来确定元素位置。绝对定位的元素可以设置外边距（margins），且不会与其他边距合并。 
+	
+4. `static`
+	- 该关键字指定元素使用正常的布局行为，即元素在文档常规流中当前的布局位置。此时 top, right, bottom, left 和 z-index 属性无效。
+
+5. `relative`
+	- 该关键字下，元素先放置在未添加定位时的位置，再在不改变页面布局的前提下调整元素位置（因此会在此元素未添加定位时所在位置留下空白）。position:relative 对 table-*-group, table-row, table-column, table-cell, table-caption 元素无效。
+
+6. `sticky `
+	- 盒位置根据正常流计算(这称为正常流动中的位置)，然后相对于该元素在流中的 flow root（BFC）和 containing block（最近的块级祖先元素）定位。在所有情况下（即便被定位元素为 table 时），该元素定位均不对后续元素造成影响。当元素 B 被粘性定位时，后续元素的位置仍按照 B 未定位时的位置来确定。position: sticky 对 table 元素的效果与 position: relative 相同。
+	
+	
 ## 背景图片居中：
 1. background-position: center center;
 2. 使背景图按比例缩放：background-size: cover;
