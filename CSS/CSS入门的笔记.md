@@ -27,6 +27,16 @@
 
 关于行高可以Google：lineheight   方应杭
 
+## 左右布局
+1. 左右布局
+	- 用浮动float实现左右布局。给左盒子添加`float:left`；(向左浮动)，给右盒子添加`float:right`；(向右浮动)；但是加了浮动效果，同时就要给左右盒子的父级盒子加上class名为`clearfix`，`clearfix::after{content:''; display:block; clear:both;}`
+	- 用左浮动`float:left`+外边距`margin`实现左右布局。给左边盒子设置右边距`margin-right`，或者给右边盒子设置左边距`margin-left`
+	- 用绝对定位`position:absolute`实现左右布局。给左右盒子的父级加相对定位`position:ralative`，给左右盒子加绝对定位`position:absolute`，同时设置`top`，`left`，`bottom`，`right`样式属性
+
+2. 左中右布局
+用浮动实现左中右布局。同上1（2）和1（3）的方法
+
+
 
 ## 居中
 
@@ -153,8 +163,12 @@ left: 4px;
   - 使用：复制在线生成代码，然后按照使用说明来就好
   - 改变大小：width height 
   - 颜色：fill
-  
-  
+
+4. css中给属性加了display：inline-block；就同时要加vertical-align：top；
+	- 因为添加了display：inline-block；容易出现bug，而加vertical-align：top；可以消除这些bug，或者说可以消除hug的出现
+
+5. 给阴影加上过渡时间就不会显得很突兀，transition：shadow 0.2s；
+
   
   
   
