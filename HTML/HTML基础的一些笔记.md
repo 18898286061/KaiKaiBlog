@@ -208,6 +208,8 @@ resize=:none ：可以让多行文本不可以拖动调整大小；
   - `col width=100`
   - `col width=200`
 
+# 附加
+> 在meta标签里，我们可以写作者`<mata name="auhtor" content="KaiKai">`还可以写一些关于SEO的优化`<meta name="keyword" content="前端开发">` 还可以写描述`<meta name="description content="前端开发博客">` 还有指定字符集<meta charset="UTF-8">
 
 
 
