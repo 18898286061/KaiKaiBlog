@@ -73,10 +73,12 @@ JS有七种数据类型：Number String Boolean Symbol Undefined Null Object
         console.log(key); // 遍历打印key值
         console.log(object[key]) //遍历打印value值
     }
-  ```
+    ```
+
   
   
 ## typeof 操作符
+
 xxx 的类型	| string |	number |	boolean |	symbol	| undefined	| null |	object |	function
 -------- | --- |--- |--- |--- |---| --- |---| --- 
 typeof xxx	| 'string'	| 'number' | 'boolean'	|'symbol'	| 'undefined' |	'object' |	'object' | 'function'
