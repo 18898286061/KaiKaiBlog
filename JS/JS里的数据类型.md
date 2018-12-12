@@ -31,6 +31,14 @@ JS有七种数据类型：Number String Boolean Symbol Undefined Null Object
   - 只有两个值：true 和 false
   - `a && b` 在 a 和 b 都为 true 时，取值为 true；否则都为 false
   - `a || b` 在 a 和 b 都为 false 时，取值为 false；否则都为 true
+  
+  - 五个Falsy值
+  number 0 NaN // false
+  string '' // false
+  null // false
+  undefined //false
+
+  object // Object都为true
 
 4. <b>Symbol</b>
 
