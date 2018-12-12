@@ -74,6 +74,7 @@ JS有七种数据类型：Number String Boolean Symbol Undefined Null Object
         console.log(object[key]) //遍历打印value值
     }
     ```
+  - Object.keys(obj) ： 此方法会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for...in 循环遍历该对象时返回的顺序一致 
 
   
   
