@@ -217,19 +217,124 @@ ReactDOM.render(
 我们可以看到，我们仅仅对代码进行了稍微的改造，在index.js里面写个APP组件以方便我们观察，APP组件里面的 `button` 分别触发不同的事件。
 `action`、 `reducer`、 `store` 想必大家都已经了解过了 这里不再做过多介绍。我们主要关注下哪里有变化：
 
-  1. 首先最明显的是demo中引入 `react-redux` 的 `Provider` 和 `connect` ，它们非常重要！这里先大概解释下它们的作用：
-    - `Provider`：它是 `react-redux` 提供的一个 `React` 组件。作用是把 `state` 传给它的所有子组件，也就是说 当你用 `Provider` 传入数据后 ，下面的所有子组件都可以共享数据，十分的方便。 
-    - `Provider` 的使用方法：把 `Provider` 组件包裹在最外层的组件。如代码所示，把整个APP组件给包裹住，然后在Provider里面把store传过去。**注意：** 一定是在Provider中传store，不能在APP组件中传store。
-    - `connect`：它是一个高阶组件。所谓高阶组件就是你给它传入一个组件，它会给你返回新的加工后的组件，不过用法倒简单，深究其原理就有点难度。这里不做connect的深究，主要是学会它的用法，毕竟想要深究必须先会使用它。  首先它有 `四个参数` (`[mapStateToProps]`, `[mapDispatchToProps]`, `[mergeProps]`, `[options]`)，后面两个参数可以不写，不写的话它是有默认值的。我们主要关注下前两个参数`mapStateToProps`和`mapDispatchToProps`。
-    - `connect` 的使用方法是：把指定的`state`和指定的`action`与`React`组件连接起来，后面括号里面写UI组件名。
+> 首先最明显的是demo中引入 `react-redux` 的 `Provider` 和 `connect` ，它们非常重要！这里先大概解释下它们的作用：
+  
+- `Provider`：它是 `react-redux` 提供的一个 `React` 组件。作用是把 `state` 传给它的所有子组件，也就是说 当你用 `Provider` 传入数据后 ，下面的所有子组件都可以共享数据，十分的方便。 
+- `Provider` 的使用方法：把 `Provider` 组件包裹在最外层的组件。如代码所示，把整个APP组件给包裹住，然后在Provider里面把store传过去。**注意：** 一定是在Provider中传store，不能在APP组件中传store。
+- `connect`：它是一个高阶组件。所谓高阶组件就是你给它传入一个组件，它会给你返回新的加工后的组件，不过用法倒简单，深究其原理就有点难度。这里不做connect的深究，主要是学会它的用法，毕竟想要深究必须先会使用它。  首先它有 `四个参数` (`[mapStateToProps]`, `[mapDispatchToProps]`, `[mergeProps]`, `[options]`)，后面两个参数可以不写，不写的话它是有默认值的。我们主要关注下前两个参数`mapStateToProps`和`mapDispatchToProps`。
+- `connect` 的使用方法是：把指定的`state`和指定的`action`与`React`组件连接起来，后面括号里面写UI组件名。
 
 
+除此之外demo中还多出了 `mapStateToProps` 、 `mapDispatchToProps` 他们又有什么作用呢？
+
+通俗一点讲的话就是：
+  1. 比如你在一个很深的UI组件里 当你想要获得`store`的数据就很麻烦。
+  2. `mapStateToProps` 就是告诉 `store` 你需要哪个 `state` ，需要什么数据就直接在 `mapStateToProps` 中写出来，然后store就会返回给你。
+  3. 同理，如果你想要 `dispatch` 派发一些行为怎么办呢， `mapDispatchToProps` 就是告诉 `store` 你要派发什么行为，需要派发什么行为就在 `mapDispatchToProps` 中写出来，然后 `store` 就会把你想要派发的行为告诉 `reducer` 。
+  4. 接下来大家都应该知道了 `reducer`就会根据旧的`state`和`action`返回新的 `state` 。
 
 
+去试下我们写的代码吧。果不其然，当我们点击'升职加薪'按钮时候 '当月工资'也相应的增加了。我们捋一下整个事件流程：
+
+1. 点击加薪按钮
+2. 触发`PayDecrease()`方法
+3. 该方法派发相应`action`
+4. `reducer`根据`action`的`type`响应得到新的`state`
+5. 通过`{this.props.tiger}`拿到新的 `state` ，渲染到页面
 
 
+Ok，这个简单的demo我们就实现了。
+但是现在还有一个问题：我们把所有的 `action`、`reducer`、`store` 、`Provider` 、`connect`等等都写在了一个页面，这在我们实际开发中肯定是不合理的，所以，我们最后就给这个小demo再优化下：
+
+首先，我们要把`action`，`reducer`什么的抽离出去，作为一个单独的文件，然后再导出：
+
+src/index.reducer.js:
+```
+const tiger = 10000
+
+//这是action
+const increase = {
+    type: '涨工资'
+}
+const decrease = {
+    type: '扣工资'
+}
+//这是reducer
+const reducer = (state = tiger, action) => {
+    switch (action.type) {
+        case '涨工资':
+            return state += 100;
+        case '扣工资':
+            return state -= 100;
+        default:
+            return state;
+    }
+}
+export default reducer
+```
+
+其次，我们也要把APP组件写在外面 **(此处一定要注意： 导出的不是APP组件，而是connect后的APP组件)**
+
+src/APP.js:
+```
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+class App extends Component {
+
+  componentDidMount() {
+    console.log(this.props)
+  } 
+  render() {
+    const { PayIncrease, PayDecrease } = this.props;
+    return (
+      <div className="App">
+        <h2>当月工资为{this.props.tiger}</h2>
+        <button onClick={PayIncrease}>升职加薪</button>
+        <button onClick={PayDecrease}>迟到罚款</button>
+      </div>
+    );
+  }
+}
+//需要渲染什么数据
+function mapStateToProps(state) {
+  return {
+    tiger: state
+  }
+}
+//需要触发什么行为
+function mapDispatchToProps(dispatch) {
+  return {
+    PayIncrease: () => dispatch({ type: '涨工资' }),
+    PayDecrease: () => dispatch({ type: '扣工资' })
+  }
+}
+
+export default App = connect(mapStateToProps, mapDispatchToProps)(App)
+
+```
+
+把这些东西分离出去之后，此时的index.js看起来明显就简洁了许多：
+
+src/index.js:
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './index.reducer'
+
+//创建store
+const store = createStore(reducer);
 
 
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>, 
+    document.getElementById('root'));
+```
 
-
-
+在最后，比较基础的Redux和React-Redux例子到这就结束了。 加油吧少年~
