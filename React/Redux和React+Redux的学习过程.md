@@ -127,7 +127,109 @@ ReactDOM.render(<App />, document.getElementById('root'));
 他们的每个作用大概解释下：
 1. `dispatch`的作用就是告诉`reducer `我给你 `action` , 你要根据我的 `action.type` 返回新的 `state` 。 
 2. 然后 `reducer` 就会根据 `action` 的 `type`，返回新的 `state` 。
-3. 我们给它 `dispatch` 了 `action` ，`reducer` 也做出相应，最后也返回新的`state`。但是其实这时候`console.log()`不会打印新的数据 因为`state`虽然变化了 但是还是打印 `store.getState()` 还是原始的数据
-4. 这时候我们就需要 `store.subscribe(() =>{}）` 了，它的作用就是每当 `reducer` 返回新的数据，它就会自动更新页面。把UI组件的`state`更新下，否则，虽然`state`变化了，页面仍不会更新（虽然现在还没有其他组件）
+3. 我们给它 `dispatch` 了 `action` ，`reducer` 也做出相应，最后也返回新的`state`。但是其实这时候`console.log()`不会打印新的数据。因为`state`虽然变化了，但是还是打印 `store.getState()` 还是原始的数据
+4. 这时候我们就需要 `store.subscribe(() =>{}）` 了，它的作用就是每当 `reducer` 返回新的数据，它就会自动更新页面。
+把UI组件的`state`更新下，否则，虽然`state`变化了，页面仍不会更新（虽然现在还没有其他组件）。
+
+
+
+## React-Redux
+好了，刚刚我们所说的这些就是基本的 `Redux` 的知识。
+我们不难发现，这样其实挺麻烦的。
+你需要写好多好多东西，而且我们并没有把 `reducer` ，`action` 的各种给分离出去，
+不然的话我还要往很多组件里面传很多东西。
+这对我们实际开发是很不友好的。
+所以， 这时候就十分迫切需要 `React-Redux` 了。
+它的作用是帮助我们操作 `Redux` 。
+有了它我们可以很方便的写`Redux`。
+
+```
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider, connect } from 'react-redux';
+
+class App extends Component {
+    render() {
+        const { PayIncrease, PayDecrease } = this.props;
+        return (
+            <div className="App">
+                <div className="App">
+                    <h2>当月工资为{this.props.tiger}</h2>
+                    <button onClick={PayIncrease}>升职加薪</button>
+                    <button onClick={PayDecrease}>迟到罚款</button>
+                </div>
+            </div>
+        );
+    }
+}
+
+const tiger = 10000
+
+//这是action
+const increase = {
+    type: '涨工资'
+}
+const decrease = {
+    type: '扣工资'
+}
+//这是reducer
+const reducer = (state = tiger, action) => {
+    switch (action.type) {
+        case '涨工资':
+            return state += 100;
+        case '扣工资':
+            return state -= 100;
+        default:
+            return state;
+    }
+}
+
+//创建store
+const store = createStore(reducer);
+
+//需要渲染什么数据
+function mapStateToProps(state) {
+    return {
+        tiger: state
+    }
+}
+//需要触发什么行为
+function mapDispatchToProps(dispatch) {
+    return {
+        PayIncrease: () => dispatch({ type: '涨工资' }),
+        PayDecrease: () => dispatch({ type: '扣工资' })
+    }
+}
+
+//连接组件
+App = connect(mapStateToProps, mapDispatchToProps)(App)
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+)
+
+```
+
+我们可以看到，我们仅仅对代码进行了稍微的改造，在index.js里面写个APP组件以方便我们观察，APP组件里面的 `button` 分别触发不同的事件。
+`action`、 `reducer`、 `store` 想必大家都已经了解过了 这里不再做过多介绍。我们主要关注下哪里有变化：
+
+  1. 首先最明显的是demo中引入 `react-redux` 的 `Provider` 和 `connect` ，它们非常重要！这里先大概解释下它们的作用：
+    - `Provider`：它是 `react-redux` 提供的一个 `React` 组件。作用是把 `state` 传给它的所有子组件，也就是说 当你用 `Provider` 传入数据后 ，下面的所有子组件都可以共享数据，十分的方便。 
+    - `Provider` 的使用方法：把 `Provider` 组件包裹在最外层的组件。如代码所示，把整个APP组件给包裹住，然后在Provider里面把store传过去。**注意：** 一定是在Provider中传store，不能在APP组件中传store。
+    - `connect`：它是一个高阶组件。所谓高阶组件就是你给它传入一个组件，它会给你返回新的加工后的组件，不过用法倒简单，深究其原理就有点难度。这里不做connect的深究，主要是学会它的用法，毕竟想要深究必须先会使用它。  首先它有 `四个参数` (`[mapStateToProps]`, `[mapDispatchToProps]`, `[mergeProps]`, `[options]`)，后面两个参数可以不写，不写的话它是有默认值的。我们主要关注下前两个参数`mapStateToProps`和`mapDispatchToProps`。
+    - `connect` 的使用方法是：把指定的`state`和指定的`action`与`React`组件连接起来，后面括号里面写UI组件名。
+
+
+
+
+
+
+
+
+
 
 
