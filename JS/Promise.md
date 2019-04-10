@@ -3,6 +3,8 @@
 > 因为做的项目需要到了Async Await，<br/>
 所以决定回顾一下掌握不牢得Promise对象与没学过的Generator
 
+本文大多参考自 阮一峰老师的 [ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/promise)
+
 ## Promise的含义
 Promise对象的两个特点：
 1. 对象的状态不受外界影响。<br/>
@@ -66,10 +68,95 @@ function timeout(ms) {
   });
 }
 
-timeout(100).then((value) => {
+timeout(2000).then((value) => {
   console.log(value);
 });
+
+// Promise <pending> （直接返回）
+// done （过两秒后返回）
 ```
 
 上面代码中，timeout方法返回一个Promise实例，表示一段时间以后才会发生的结果。<br/>
 过了指定的时间（ms参数）以后，Promise实例的状态变为resolved，就会触发then方法绑定的回调函数。
+
+**Promise 新建后就会立即执行。**
+```
+let promise = new Promise(function(resolve, reject) {
+  console.log('Promise');
+  resolve();
+});
+
+promise.then(function() {
+  console.log('resolved.');
+});
+
+// 因为then指定的回调函数，回调函数是异步任务，所以等待当前脚本全部执行完之后才输出
+
+console.log('Hi!');
+
+// Promise
+// Hi!
+// resolved
+```
+
+上面代码中，`Promise` 新建后立即执行，所以首先输出的是`Promise`。<br/>
+然后，then方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行，所以resolved最后输出。
+
+
+下面是异步加载图片的例子。
+```
+function loadImageAsync(url) {
+  return new Promise(function(resolve, reject) {
+    const image = new Image();
+
+    image.onload = function() {
+      resolve(image);
+    };
+
+    image.onerror = function() {
+      reject(new Error('Could not load image at ' + url));
+    };
+
+    image.src = url;
+  });
+}
+```
+上面代码中，使用Promise包装了一个图片加载的异步操作。<br/>
+如果加载成功，就调用resolve方法，否则就调用reject方法。
+
+
+下面是一个用Promise对象实现的 Ajax 操作的例子。
+```
+const getJSON = function(url) {
+  const promise = new Promise(function(resolve, reject){
+    const handler = function() {
+      if (this.readyState !== 4) {
+        return;
+      }
+      if (this.status === 200) {
+        resolve(this.response);
+      } else {
+        reject(new Error(this.statusText));
+      }
+    };
+    const client = new XMLHttpRequest();
+    client.open("GET", url);
+    client.onreadystatechange = handler;
+    client.responseType = "json";
+    client.setRequestHeader("Accept", "application/json");
+    client.send();
+
+  });
+
+  return promise;
+};
+
+getJSON("/posts.json").then(function(json) {
+  console.log('Contents: ' + json);
+}, function(error) {
+  console.error('出错了', error);
+});
+```
+上面代码中，getJSON是对 XMLHttpRequest 对象的封装，<br/>
+用于发出一个针对 JSON 数据的 HTTP 请求，并且返回一个Promise对象。<br/>
+需要注意的是，在getJSON内部，resolve函数和reject函数调用时，都带有参数
