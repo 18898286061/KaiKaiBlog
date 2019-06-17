@@ -1,14 +1,18 @@
-水平居中：
+## 水平居中：
 
-  内联：爸爸身上写 text-align:center;
+  内联：父级元素写上 `text-align:center`;
   
-  块级：margin-left: auto; margin-right: auto;
+  块级：
+  ```
+  margin-left: auto; 
+  margin-right: auto;
+  ```
 
 ---
 
-垂直居中：
+## 垂直居中：
   
-  注：以下未特别写出HTML代码的实例均使用以下HTML:
+  **注意：** 以下未特别写出HTML代码的实例，均使用以下HTML:
   ```
   <body>
   <div class="parent">
@@ -19,25 +23,23 @@
 </body>
   ```
   
-  如果 .parent 的 高度( height ) 不写，你只需要写上内边距 padding: 10px 0; 就能将 .child 垂直居中；
-  
-  如果 .parent 的 height 写死了，就很难把 .child 居中，以下是垂直居中的方法。
-  
-  忠告：能不写 height 就千万别写 height。
+  如果 .parent （父元素）的 高度( height ) 不写，你只需要写上内边距 padding: 10px 0; 就能将 .child 垂直居中；<br/>
+  如果 .parent （父元素）的 height 写死了，就很难把 .child 居中，以下是垂直居中的方法；<br/>
+  忠告：能不写 height 就千万别写 height；
 
 ```
 .parent{
   border: 1px solid red;
   padding: 10px 0;
 }
-.child{
+.child
   border: 1px solid green;
   width: 300px;
   height: 100px;
 }
 ```
 
-1.table自带功能 :
+1. table自带功能 :
 ```
 <body>
   <table class="parent">
@@ -50,7 +52,7 @@
 </body>
 ```
 
-2.100% 高度的 afrer before 加上 inline block
+2. 100% 高度的 afrer before 加上 inline block
 HTML:
 ```
 <div class="parent">
@@ -92,7 +94,7 @@ CSS:
 ```
 
 
-3.margin-top -50%
+3. margin-top -50%
 
 ```
 .parent{
@@ -113,7 +115,7 @@ CSS:
 ```
 
 
-4.absolute margin auto
+4. absolute margin auto
 ```
 .parent{
   height: 600px;
@@ -133,7 +135,7 @@ CSS:
 }
 ```
 
-5.translate -50%
+5. translate -50%
 ```
 .parent{
   height: 600px;
@@ -150,7 +152,7 @@ CSS:
 ```
 
 
-6.div 装成 table
+6. div 装成 table
 ```
 .parent{
   border: 3px solid red;
